@@ -54,3 +54,12 @@ class TestClass:
             result = employee_test.bonus_calculate()
 
             assert result
+
+    def test_return_str(self):
+        name, birth_date, salary  = 'Test', '13/03/2000', 1000
+        expected = f'Funcionario({name}, {birth_date}, {salary})'
+
+        employee_test = Employee('Test', '13/03/2000', 1000)
+        result = employee_test.__str__()
+
+        assert result == expected
