@@ -22,9 +22,10 @@ class Employee:
 
     def bonus_calculate(self):
         value = self._salary * 0.1
-        if value > 1000:
-            value = 0
 
+        if value > 1000:
+            raise Exception('Salary is too high to receive bonus')
+        
         return value
 
     def last_name(self):
@@ -32,6 +33,16 @@ class Employee:
         split_full_name = full_name.split(' ')
         
         return split_full_name[-1] 
+    
+    def _is_director(self):
+        last_name_directors = ['Rodrigues', 'Windsor', 'Bourbon', 'Yamato', 'Al Saud', 'Khan', 'Tudor', 'Ptolomeu']
+        
+        return (self._salary >= 100000) and (self.last_name() in last_name_directors)
+    
+    def decrease_salary(self):        
+        if self._is_director():
+            decrease = self._salary * 0.1
+            self._salary = self._salary - decrease
 
     def __str__(self):
         return f'Funcionario({self._name}, {self._birth_date}, {self._salary})'
